@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 void initial_print(){
-    printf("Welcome to PisiCh Bank!\n");
+    system("figlet -c PisiCh Bank");
     printf("What operation would you like to perform?\n");
 }
 
