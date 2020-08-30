@@ -8,12 +8,14 @@ typedef struct Account{
     char name[100];
     long double balance;
     short typeAcc;
+    int PIN;
 }Account;
 
 typedef struct LoggedUser{
     char user[100];
     char password[100];
     short perms;
+    int details;
 }LoggedUser;
 
 void initial_print(){
@@ -25,7 +27,24 @@ void initial_print(){
     printf("Enter the number of your selection: ");
 }
 void create_acc(){
-  printf("create acc\n");
+  int test = 0;
+  int *age = &test;
+  char name[100];
+  printf("Enter your age: ");
+  scanf("%d", age);
+  while(*age <= 0){
+    printf("That is not a valid age, please enter a valid age.\n");
+    scanf("%d", age);
+  }
+  if(*age < 18){
+    printf("You are not allowed to create a bank account if you are under 18 years old, come back in %d years.\n", 18 - *age);
+    exit(0);
+  }
+  printf("Enter your full name: ");
+  scanf(" %[^\t\n]s",name);
+  printf("%s", name);
+  
+
 }
 
 void check_bal(){
@@ -70,3 +89,4 @@ int main(){
     else if(*selection == 6)
       delete_acc();
 }
+
