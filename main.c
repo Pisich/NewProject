@@ -52,6 +52,10 @@ void create_acc(){
     printf("That is not a valid selection, please enter a valid account type: ");
     scanf("%d", &acc);
   }
+  if(acc == 1)
+    //system("figlet -c Savings");
+  else if(acc == 2)
+    //system("figlet -c Checks");
 }
 
 void check_bal(){
