@@ -29,7 +29,9 @@ void initial_print(){
 void create_acc(){
   int test = 0;
   int *age = &test;
+  int acc;
   char name[100];
+  //system("figlet Create new account");
   printf("Enter your age: ");
   scanf("%d", age);
   while(*age <= 0){
@@ -42,9 +44,14 @@ void create_acc(){
   }
   printf("Enter your full name: ");
   scanf(" %[^\t\n]s",name);
-  printf("%s", name);
-  
-
+  printf("What kind of account would you like to open?\n");
+  printf("1. Savings\n2. Checks\n");
+  printf("Enter your selection: ");
+  scanf("%d", &acc);
+  while(acc < 1 || acc > 2){
+    printf("That is not a valid selection, please enter a valid account type: ");
+    scanf("%d", &acc);
+  }
 }
 
 void check_bal(){
@@ -89,4 +96,3 @@ int main(){
     else if(*selection == 6)
       delete_acc();
 }
-
