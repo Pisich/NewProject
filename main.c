@@ -32,38 +32,87 @@ void initial_print(){
 }
 
 void create_savings(char *name){
-  //system("figlet -c Savings");
+  //system("figlet -c Savings Account");
   struct Account newAccount;
+  long double temp_bal;
+  char y_or_n, temp;
+
+  time_t t = time(NULL);
+  struct tm tm = *localtime(&t);
+
   newAccount.typeAcc = 1;
+
   for(int i = 0; i < MAX_NAME_LEN; i++)
     newAccount.name[i] = *(name + i);
+
   srand(time(0));
   printf("%s, your new account number is: ", newAccount.name);
+
   for(int i = 0; i < 16; i++){
     newAccount.number[i] = rand() % 10;
     printf("%d", newAccount.number[i]);
   }
   printf("\n");
+
   printf("You need to deposit at least $500 so your account won't build interests overtime\n");
-  printf("Enter the amount you would like to deposit to your new account: ");
-  scanf("%lg", &newAccount.balance);
+  printf("Enter the amount you would like to deposit in your new account: ");
+  scanf("%lg", &temp_bal);
+
+  if(temp_bal < 500){
+    scanf("%c", &temp);
+    printf("Your account will start building interests at the end of the month if you deposit less than $500, are you sure you want to do this? (y/n) ");
+    scanf("%c", &y_or_n);
+
+    if(y_or_n == 110){
+      printf("Enter the amount you would like to deposit in your new account: ");
+      scanf("%lg", &temp_bal);
+    }
+    if(y_or_n == 121 || temp_bal < 500){
+      printf("Your account will start building interests in %d days", 31 - tm.tm_mday);
+    }
+  }
+  newAccount.balance = temp_bal;
 }
 void create_checks(char *name){
-  //system("figlet -c Checks");
+  //system("figlet -c Checks Account");
   struct Account newAccount;
+  long double temp_bal;
+  char y_or_n, temp;
+
+  time_t t = time(NULL);
+  struct tm tm = *localtime(&t);
+
   newAccount.typeAcc = 2;
+
   for(int i = 0; i < MAX_NAME_LEN; i++)
     newAccount.name[i] = *(name + i);
   srand(time(0));
   printf("%s, your new account number is: ", newAccount.name);
+
   for(int i = 0; i < 16; i++){
     newAccount.number[i] = rand() % 10;
     printf("%d", newAccount.number[i]);
   }
   printf("\n");
+
   printf("You need to deposit at least $1000 so your account won't build interests overtime\n");
-  printf("Enter the amount you would like to deposit to your new account: ");
-  scanf("%lg", &newAccount.balance);
+  printf("Enter the amount you would like to deposit in your new account: ");
+  scanf("%lg", &temp_bal);
+
+  if(temp_bal < 1000){
+    scanf("%c", &temp);
+    printf("Your account will start building interests at the end of the month if you deposit less than $500, are you sure you want to do this? (y/n) ");
+    scanf("%c", &y_or_n);
+
+    if(y_or_n == 110){
+      printf("Enter the amount you would like to deposit in your new account: ");
+      scanf("%lg", &temp_bal);
+    }
+    if(y_or_n == 121 || temp_bal < 1000){
+      printf("Your account will start building interests in %d days", 31 - tm.tm_mday);
+    }
+  }
+  newAccount.balance = temp_bal;
 }
 
 void create_acc(){
@@ -87,6 +136,12 @@ void create_acc(){
   printf("Enter your full name: ");
   scanf("%[^\n]s", name);
   //Check if this name isn't on Credit Bureau
+  
+  for(int i = 0; i < MAX_NAME_LEN; i++){
+    if(name[i] >= 97 && name[i] <= 122 && name[i] != 32)
+      name[i] = name[i] - 32;
+  }
+
   printf("What kind of account would you like to open?\n");
   printf("1. Savings\n2. Checks\n");
   printf("Enter your selection: ");
