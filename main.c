@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 
 #define MAX_NAME_LEN 100
 #define MAX_PASS_LEN 50
 
 typedef struct Account{
-  int number[19];
+  int number[16];
   char name[MAX_NAME_LEN];
   long double balance;
   short typeAcc;
@@ -36,7 +37,16 @@ void create_savings(char *name){
   newAccount.typeAcc = 1;
   for(int i = 0; i < MAX_NAME_LEN; i++)
     newAccount.name[i] = *(name + i);
-  printf("%s", newAccount.name);
+  srand(time(0));
+  printf("%s, your new account number is: ", newAccount.name);
+  for(int i = 0; i < 16; i++){
+    newAccount.number[i] = rand() % 10;
+    printf("%d", newAccount.number[i]);
+  }
+  printf("\n");
+  printf("You need to deposit at least $500 so your account won't build interests overtime\n");
+  printf("Enter the amount you would like to deposit to your new account: ");
+  scanf("%lg", &newAccount.balance);
 }
 void create_checks(char *name){
   //system("figlet -c Checks");
@@ -44,7 +54,16 @@ void create_checks(char *name){
   newAccount.typeAcc = 2;
   for(int i = 0; i < MAX_NAME_LEN; i++)
     newAccount.name[i] = *(name + i);
-  printf("%s", newAccount.name);
+  srand(time(0));
+  printf("%s, your new account number is: ", newAccount.name);
+  for(int i = 0; i < 16; i++){
+    newAccount.number[i] = rand() % 10;
+    printf("%d", newAccount.number[i]);
+  }
+  printf("\n");
+  printf("You need to deposit at least $1000 so your account won't build interests overtime\n");
+  printf("Enter the amount you would like to deposit to your new account: ");
+  scanf("%lg", &newAccount.balance);
 }
 
 void create_acc(){
@@ -67,6 +86,7 @@ void create_acc(){
   scanf("%c", &temp);
   printf("Enter your full name: ");
   scanf("%[^\n]s", name);
+  //Check if this name isn't on Credit Bureau
   printf("What kind of account would you like to open?\n");
   printf("1. Savings\n2. Checks\n");
   printf("Enter your selection: ");
