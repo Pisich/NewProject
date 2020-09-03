@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
+#include "C:\MinGW\include\json-c\json.h"
 
 #define MAX_NAME_LEN 100
 #define MAX_PASS_LEN 50
