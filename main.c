@@ -3,7 +3,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
-#include "C:\MinGW\include\json-c\json.h"
 
 #define MAX_NAME_LEN 100
 #define MAX_PASS_LEN 50
@@ -32,7 +31,19 @@ void initial_print(){
   printf("Enter the number of your selection: ");
 }
 
-void insertAccToDb(){
+void insertAccToDb(struct Account *acc){
+  FILE *accDB;
+  char new_acc[MAX_NAME_LEN];
+  char numb[16];
+  char name[MAX_NAME_LEN];
+  for(int i=0; i<MAX_NAME_LEN; i++) name[i] = (*acc).name[i];
+  for (int i=0; i<16; i++) sprintf(&numb[i], "%d", (*acc).name[i]);
+  //LEFT HERE
+  sprintf(new_acc, "%d\n%s\n", *acc->number, acc->name, acc->);
+  accDB = fopen("src/accounts.json", "a");
+  fwrite(accDB, sizeof(char), strlen(accDB));
+  fclose(accDB);
+
 
 }
 
@@ -41,6 +52,7 @@ int confirmAccount(struct Account *newAcc){
   printf("Please confirm your new account details:\n");
   printf("Account owner: %s\n", newAcc->name);
   printf("Account number: %d\n", *newAcc->number);
+  //Prints incorrectly
   printf("Current balance: %LG\n", newAcc->balance);
   scanf("%c", &temp);
   if((*newAcc).typeAcc == 1){
@@ -104,7 +116,7 @@ void create_savings(char *name){
   }
   newAccount.balance = temp_bal;
   int check = confirmAccount(&newAccount);
-  if(check == 1) insertAccToDb();
+  if(check == 1) insertAccToDb(&newAccount);
   else if(check == 0) create_savings(name);
 }
 void create_checks(char *name){
@@ -148,7 +160,7 @@ void create_checks(char *name){
   }
   newAccount.balance = temp_bal;
   int check = confirmAccount(&newAccount);
-  if(check == 1) insertAccToDb();
+  if(check == 1) insertAccToDb(&newAccount);
   else if(check == 0) create_checks(name);
 }
 
