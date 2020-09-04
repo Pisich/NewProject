@@ -1,10 +1,10 @@
 # PisiChBank
 Banking platform built in C.
-Operations include:
--Create a new account
--Deposit to your account
--Withdraw from your account
--Delete your account
+Operations include:</br>
+-Create a new account</br>
+-Deposit to your account</br>
+-Withdraw from your account</br>
+-Delete your account</br>
 
 
 ## Contributions
