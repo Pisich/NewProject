@@ -37,22 +37,22 @@ void insertAccToDb(struct Account *acc){
   char numb[16];
   char name[MAX_NAME_LEN];
   for(int i=0; i<MAX_NAME_LEN; i++) name[i] = (*acc).name[i];
-  for (int i=0; i<16; i++) sprintf(&numb[i], "%d", (*acc).name[i]);
-  //LEFT HERE
-  sprintf(new_acc, "%d\n%s\n", *acc->number, acc->name, acc->);
-  accDB = fopen("src/accounts.json", "a");
+  for (int i=0; i<16; i++) sprintf(&numb[i], "%d", (*acc).number[i]);
+  sprintf(new_acc, "%s\n%s\n%LG\n%d\n%d", numb, name, acc->balance, acc->typeAcc, acc->PIN);
+  /*accDB = fopen("src/accounts.json", "a");
   fwrite(accDB, sizeof(char), strlen(accDB));
-  fclose(accDB);
+  fclose(accDB);*/
 
 
 }
 
 int confirmAccount(struct Account *newAcc){
   char y_or_n, temp;
+  char numb[16];
   printf("Please confirm your new account details:\n");
   printf("Account owner: %s\n", newAcc->name);
-  printf("Account number: %d\n", *newAcc->number);
-  //Prints incorrectly
+  for (int i=0; i<16; i++) sprintf(&numb[i], "%d", (*newAcc).number[i]);
+  printf("Account number: %s\n", numb);
   printf("Current balance: %LG\n", newAcc->balance);
   scanf("%c", &temp);
   if((*newAcc).typeAcc == 1){
