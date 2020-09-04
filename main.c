@@ -39,10 +39,10 @@ void insertAccToDb(struct Account *acc){
   for(int i=0; i<MAX_NAME_LEN; i++) name[i] = (*acc).name[i];
   for (int i=0; i<16; i++) sprintf(&numb[i], "%d", (*acc).number[i]);
   sprintf(new_acc, "%s\n%s\n%LG\n%d\n%d", numb, name, acc->balance, acc->typeAcc, acc->PIN);
-  /*accDB = fopen("src/accounts.json", "a");
-  fwrite(accDB, sizeof(char), strlen(accDB));
-  fclose(accDB);*/
-
+  accDB = fopen("src/accounts.json", "a");
+  fwrite(new_acc, sizeof(char), strlen(new_acc), accDB);
+  fclose(accDB);
+  //system("figlet -c Account successfully created!");
 
 }
 
