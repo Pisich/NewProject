@@ -10,7 +10,7 @@
 typedef struct Account{
   int number[16];
   char name[MAX_NAME_LEN];
-  long double balance;
+  long int balance;
   short typeAcc;
   int PIN;
 }Account;
@@ -38,7 +38,7 @@ void insertAccToDb(struct Account *acc){
   char name[MAX_NAME_LEN];
   for(int i=0; i<MAX_NAME_LEN; i++) name[i] = (*acc).name[i];
   for (int i=0; i<16; i++) sprintf(&numb[i], "%d", (*acc).number[i]);
-  sprintf(new_acc, "%s\n%s\n%LG\n%d\n%d", numb, name, acc->balance, acc->typeAcc, acc->PIN);
+  sprintf(new_acc, "%s\n%s\n%ld\n%d\n%d", numb, name, acc->balance, acc->typeAcc, acc->PIN);
   accDB = fopen("src/accounts.json", "a");
   fwrite(new_acc, sizeof(char), strlen(new_acc), accDB);
   fclose(accDB);
@@ -53,7 +53,7 @@ int confirmAccount(struct Account *newAcc){
   printf("Account owner: %s\n", newAcc->name);
   for (int i=0; i<16; i++) sprintf(&numb[i], "%d", (*newAcc).number[i]);
   printf("Account number: %s\n", numb);
-  printf("Current balance: %LG\n", newAcc->balance);
+  printf("Current balance: %ld\n", newAcc->balance);
   scanf("%c", &temp);
   if((*newAcc).typeAcc == 1){
     printf("Account type: Savings\n");
@@ -77,7 +77,7 @@ int confirmAccount(struct Account *newAcc){
 void create_savings(char *name){
   //system("figlet -c Savings Account");
   struct Account newAccount;
-  long double temp_bal;
+  long int temp_bal;
   char y_or_n, temp;
 
   time_t t = time(NULL);
@@ -99,7 +99,7 @@ void create_savings(char *name){
 
   printf("You need to deposit at least $500 so your account won't build interests overtime\n");
   printf("Enter the amount you would like to deposit in your new account: ");
-  scanf("%LG", &temp_bal);
+  scanf("%ld", &temp_bal);
 
   if(temp_bal < 500){
     scanf("%c", &temp);
@@ -108,7 +108,7 @@ void create_savings(char *name){
 
     if(y_or_n == 110){
       printf("Enter the amount you would like to deposit in your new account: ");
-      scanf("%LG", &temp_bal);
+      scanf("%ld", &temp_bal);
     }
     if(y_or_n == 121 || temp_bal < 500){
       printf("Your account will start building interests in %d days\n", 31 - tm.tm_mday);
@@ -122,7 +122,7 @@ void create_savings(char *name){
 void create_checks(char *name){
   //system("figlet -c Checks Account");
   struct Account newAccount;
-  long double temp_bal;
+  long int temp_bal;
   char y_or_n, temp;
 
   time_t t = time(NULL);
@@ -143,7 +143,7 @@ void create_checks(char *name){
 
   printf("You need to deposit at least $1000 so your account won't build interests overtime\n");
   printf("Enter the amount you would like to deposit in your new account: ");
-  scanf("%LG", &temp_bal);
+  scanf("%ld", &temp_bal);
 
   if(temp_bal < 1000){
     scanf("%c", &temp);
@@ -152,7 +152,7 @@ void create_checks(char *name){
 
     if(y_or_n == 110){
       printf("Enter the amount you would like to deposit in your new account: ");
-      scanf("%LG", &temp_bal);
+      scanf("%ld", &temp_bal);
     }
     if(y_or_n == 121 || temp_bal < 1000){
       printf("Your account will start building interests in %d days\n", 31 - tm.tm_mday);
