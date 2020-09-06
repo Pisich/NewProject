@@ -222,7 +222,17 @@ void change_details(){
 }
 
 void delete_acc(){
-  printf("del acc\n");
+  FILE *accDB;
+  int number[16];
+  char temp;
+  char buffer[1024];
+  printf("Enter your accounts number: ");
+  for(int i = 0; i<16; i++) scanf("%d", &number[i]);
+  //LEFT HERE
+  accDB = fopen("src/accounts.json", "r");
+  fread(buffer, sizeof(char), 1024, accDB);
+  fclose(accDB);
+  printf("%s",buffer);
 }
 
 int main(){
