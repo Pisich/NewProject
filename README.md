@@ -14,6 +14,16 @@ You can use any C compiler for this proyect, even though I recommend you to use 
 ## Building the container
 To build the container you must have docker installed in your system.</br>
 If you already have it you can just follow these steps to build the container:
+```
+# Clone the PisiCh Bank repo
+git clone https://github.com/Pisich/PisiChBank
 
+# Cd into the newly created folder
+cd PisichBank
+
+# Build you container
+docker build .
+```
+The proyect is built inside an Alpine image. Inside it, there are some basic compiling and formatting tools installed that the proyect depends on.
 ## Contributions
 Note that this program is in early development, if you would like to see a feature added, feel free to submit an issue or a pull request.
