@@ -31,7 +31,7 @@ git clone https://github.com/Pisich/PisiChBank
 cd PisichBank
 
 # Build you container
-docker build -t PisiChBank:1.0 .
+docker build -t pisichbank:1.0 .
 
 #Run your container
 docker run PisiChBank:1.0
