@@ -14,6 +14,10 @@ struct Account accArr[MAX_LEN];
  
 int num_acc;
 
+void acc_bal(){
+  
+}
+
 void withdraw(){
   int loc_acc_num;
   float withdraw_money;
@@ -94,7 +98,7 @@ void initial_print(){
   printf("2. Deposit in your account \n");
   printf("3. Withdraw from your account \n");
   printf("4. Display account information \n");
-  printf("5. Log out \n");
+  printf("6. Log out \n");
   printf("options \n\n");
 }
 
@@ -116,7 +120,9 @@ int main(){
         break;
       case '4': acc_info();
         break;
-      case '5': exit(0);
+      case '5': acc_bal();
+        break;
+      case '6': exit(0);
       default:
         printf("Please enter any option to continue \n");
         break;
