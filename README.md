@@ -10,7 +10,16 @@ Operations include:</br>
 
 ## Compiling
 You can use any C compiler for this proyect, even though I recommend you to use GCC.
+```
+# Clone the PisiCh Bank repo
+git clone https://github.com/Pisich/PisiChBank
 
+# Cd into the newly created folder
+cd PisichBank
+
+# Compile the code
+gcc -o main.c PisiChBank
+```
 ## Building the container
 To build the container you must have docker installed in your system.</br>
 If you already have it you can just follow these steps to build the container:
