@@ -34,7 +34,7 @@ cd PisichBank
 docker build -t pisichbank:1.0 .
 
 #Run your container
-docker run PisiChBank:1.0
+docker run pisichbank:1.0
 ```
 The proyect is built inside an Alpine image. Inside it, there are some basic compiling and formatting tools installed that the proyect depends on.
 ## Contributions
