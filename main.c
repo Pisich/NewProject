@@ -22,18 +22,16 @@ void withdraw(){
   int loc_acc_num;
   float withdraw_money;
  
-  printf("Enter account number you want to withdraw money:");
+  printf("Enter your first account number where you want to withdraw money from:");
   scanf("%d",&loc_acc_num);
-  printf("\nThe current balance for account %d is %.2f \n", 
-  loc_acc_num, accArr[loc_acc_num-1].available_balance);
-  printf("\nEnter money you want to withdraw from account ");
+  printf("\nThe current balance for this account is %.2f \n", accArr[loc_acc_num-1].available_balance);
+  printf("\nEnter the amount of money you want to withdraw from this account ");
   scanf("%f",&withdraw_money);
  
   if(loc_acc_num == accArr[loc_acc_num-1].acc_number){
     accArr[loc_acc_num-1].available_balance=
     accArr[loc_acc_num-1].available_balance-withdraw_money;
-    printf("\nThe New balance for account %d is %.2f \n", 
-    loc_acc_num, accArr[loc_acc_num-1].available_balance);
+    printf("\nThe new balance of this account is %.2f \n", accArr[loc_acc_num-1].available_balance);
    }
   loc_acc_num++;
 }
@@ -42,7 +40,7 @@ void deposit(){
   int loc_acc_num;
   float add_money;
  
-  printf("Enter account number you want to deposit money:");
+  printf("Enter your first account number where you want to deposit money:");
   scanf("%d",&loc_acc_num);
   printf("\nThe current balance for account %d is %.2f \n", 
   loc_acc_num, accArr[loc_acc_num-1].available_balance);
@@ -81,7 +79,7 @@ void create_account(){
   printf("\nEnter the account holder name: ");
   scanf("%c", &temp);
   scanf("%[^\n]s", name);
-  printf("\nEnter the account number(1 to 10): ");
+  printf("\nEnter your first account number(1 to 9): ");
   scanf("%d", &acc_number);
   scanf("%c", &temp);
   strcpy(accArr[acc_number-1].acc_holder_name, acc_holder_name);
@@ -104,8 +102,8 @@ void initial_print(){
   printf("2. Deposit in your account \n");
   printf("3. Withdraw from your account \n");
   printf("4. Display account information \n");
+  printf("5. Check my account balance\n");
   printf("6. Log out \n");
-  printf("options \n\n");
 }
 
 int main(){
