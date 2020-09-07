@@ -5,9 +5,9 @@
 #define MAX_LEN 30
 
 struct Account{
-     char acc_holder_name[MAX_LEN];
-     int acc_number;
-     float available_balance;  
+  char acc_holder_name[MAX_LEN];
+  int acc_number;
+  float available_balance;  
 };
 
 struct Account accArr[MAX_LEN];
@@ -49,7 +49,7 @@ void deposit(){
   printf("\nEnter money you want to deposit:  ");
   scanf("%f",&add_money);
  
-  if (loc_acc_num==accArr[loc_acc_num-1].acc_number){
+  if (loc_acc_num == accArr[loc_acc_num-1].acc_number){
     accArr[loc_acc_num-1].available_balance=
     accArr[loc_acc_num-1].available_balance+add_money;
     printf("\nThe New balance for account %d is %.2f \n", 
