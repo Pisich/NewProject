@@ -74,21 +74,27 @@ void acc_info(){
 void create_account(){
   char acc_holder_name[MAX_LEN];
   char temp;
+  char name[MAX_LEN];
   int acc_number;
   float available_balance = 0;
   fflush(stdin);
   printf("\nEnter the account holder name: ");
   scanf("%c", &temp);
-  scanf("%[^\n]s", acc_holder_name);
+  scanf("%[^\n]s", name);
   printf("\nEnter the account number(1 to 10): ");
   scanf("%d", &acc_number);
   scanf("%c", &temp);
   strcpy(accArr[acc_number-1].acc_holder_name, acc_holder_name);
    accArr[acc_number-1].acc_number = acc_number;
    accArr[acc_number-1].available_balance = available_balance;
- 
+  for(int i = 0; i < MAX_LEN; i++){
+    if(name[i] >= 97 && name[i] <= 122 && name[i] != 32)
+      name[i] = name[i] - 32;
+  }
+  for(int i = 0; i < MAX_LEN; i++) accArr[acc_number-1].acc_holder_name[i] = name[i];
   //system("figlet -c Account has been created successfully");
   printf("Account holder name: %s \n" , accArr[acc_number-1].acc_holder_name);
+
   printf("Account number: %d \n" , accArr[acc_number-1].acc_number);
   printf("Available balance: %.2f \n" , accArr[acc_number-1].available_balance);
 }
@@ -106,27 +112,25 @@ int main(){
   char *option;
   num_acc = 0;
   //system("figlet -c Welcome to PisiCh Bank")
-  while(1){
-    initial_print();
-    printf("Please enter any option to continue: ");
+  initial_print();
+  printf("Please enter any option to continue: ");
  
-    scanf("%c", option);
-    switch(*option){
-      case '1': create_account();
-        break;
-      case '2': deposit();
-        break;
-      case '3': withdraw();
-        break;
-      case '4': acc_info();
-        break;
-      case '5': acc_bal();
-        break;
-      case '6': exit(0);
-      default:
-        printf("Please enter any option to continue \n");
-        break;
-    }
+  scanf("%c", option);
+  switch(*option){
+    case '1': create_account();
+      break;
+    case '2': deposit();
+      break;
+    case '3': withdraw();
+      break;
+    case '4': acc_info();
+      break;
+    case '5': acc_bal();
+      break;
+    case '6': exit(0);
+    default:
+      printf("Please enter any option to continue \n");
+      break;
   }
   return 0;
 }
