@@ -13,43 +13,50 @@ struct Account{
 
 struct Account accArr[MAX_LEN];
  
-int num_acc;
+int num_acc, past_operations;
+
+void ask();
 
 void acc_bal(){
   int loc_acc_num;
  
-  printf("Enter your first account number where you want to deposit money:");
+  printf("Enter your first account number to see your available balance: ");
   scanf("%d",&loc_acc_num);
   printf("\nThe current balance for account %d", loc_acc_num);
   for(int i = 0; i<15;i++) printf("%d", accArr[loc_acc_num-1].acc_numbers[i]);
   printf(" is %.2f\n", accArr[loc_acc_num-1].available_balance);
+  ask();
 }
 
 void withdraw(){
   int loc_acc_num;
   float withdraw_money;
  
-  printf("Enter your first account number where you want to withdraw money from:");
+  printf("Enter your first account number where you want to withdraw money from: ");
   scanf("%d",&loc_acc_num);
   printf("\nThe current balance for account %d", loc_acc_num);
   for(int i = 0; i<15;i++) printf("%d", accArr[loc_acc_num-1].acc_numbers[i]);
   printf(" is %.2f\n", accArr[loc_acc_num-1].available_balance);
   printf("\nEnter the amount of money you want to withdraw from this account: ");
   scanf("%f",&withdraw_money);
- 
+  while(withdraw_money > accArr[loc_acc_num-1].available_balance){
+    printf("You can't withdraw more money than you actually have in your account, please enter another amount.\n");
+    scanf("%f",&withdraw_money);
+  }
   if(loc_acc_num == accArr[loc_acc_num-1].first_acc_number){
     accArr[loc_acc_num-1].available_balance=
     accArr[loc_acc_num-1].available_balance-withdraw_money;
     printf("\nThe new balance of this account is %.2f \n", accArr[loc_acc_num-1].available_balance);
    }
   loc_acc_num++;
+  ask();
 }
 
 void deposit(){
   int loc_acc_num;
   float add_money;
  
-  printf("Enter your first account number where you want to deposit money:");
+  printf("Enter your first account number where you want to deposit money: ");
   scanf("%d",&loc_acc_num);
   printf("\nThe current balance for account %d", loc_acc_num);
   for(int i = 0; i<15;i++) printf("%d", accArr[loc_acc_num-1].acc_numbers[i]);
@@ -63,6 +70,7 @@ void deposit(){
     printf("\nThe new balance for this account is %.2f \n", accArr[loc_acc_num-1].available_balance);
    }
   loc_acc_num++;
+  ask();
 }
 
 void acc_info(){
@@ -70,11 +78,12 @@ void acc_info(){
   while(accArr[num_acc].available_balance>0){
     printf("Account holder name: %s \n", accArr[num_acc].acc_holder_name);
     printf("Account number: %d", accArr[num_acc].first_acc_number);
-    for(int i = 0; i<15; i++) printf("%d", accArr[acc_first_numb-1].acc_numbers[i]);
+    for(int i = 0; i<15; i++) printf("%d", accArr[num_acc].acc_numbers[i]);
     printf("\n");
     printf("Available balance: %.2f \n\n", accArr[num_acc].available_balance);
     num_acc++;
   }
+  ask();
 }
 
 void create_account(){
@@ -109,6 +118,7 @@ void create_account(){
   for(int i = 0; i<15; i++) printf("%d", accArr[acc_first_numb-1].acc_numbers[i]);
   printf("\n");
   printf("Available balance: %.2f \n" , accArr[acc_first_numb-1].available_balance);
+  ask();
 }
 
 void initial_print(){
@@ -121,14 +131,15 @@ void initial_print(){
 }
 
 int main(){
-  char *option;
+  char option, temp;
   num_acc = 0;
   //system("figlet -c Welcome to PisiCh Bank")
   initial_print();
   printf("Please enter any option to continue: ");
- 
-  scanf("%c", option);
-  switch(*option){
+  if(past_operations == 1)
+    scanf("%c", &temp);
+  scanf("%c", &option);
+  switch(option){
     case '1': create_account();
       break;
     case '2': deposit();
@@ -145,4 +156,18 @@ int main(){
       break;
   }
   return 0;
+}
+
+void ask(){
+  char select, temp;
+  printf("Do you want to perform another operation? (y/n) ");
+  if (past_operations == 1)
+    scanf("%c", &temp);
+  scanf("%c", &select);
+  past_operations = 1;
+  switch(select){
+    case 'y': main();
+    case 'n': exit(0);
+    default: exit(0);
+  }
 }
