@@ -29,10 +29,10 @@ git clone https://github.com/Pisich/PisiChBank
 # Cd into the newly created folder
 cd PisichBank
 
-# Build you container
+# Build the container
 docker build -t pisichbank:1.0 .
 
-#Run your container
+#Run the container
 docker run pisichbank:1.0
 ```
 The proyect is built inside an Alpine image. Inside it, there are some basic compiling and formatting tools installed that the proyect depends on.
