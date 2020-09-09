@@ -1,5 +1,5 @@
 # PisiChBank
-Banking platform built in C.</br>
+Banking platform built in C.</br></br>
 Operations include:</br>
 -Create a new account</br>
 -Check the balance of your account</br>
