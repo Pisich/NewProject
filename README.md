@@ -4,7 +4,6 @@ Operations include:</br>
 -Create a new account</br>
 -Check the balance of your account</br>
 -Deposit to your account</br>
--Change any account details</br>
 -Withdraw from your account</br>
 -Delete your account</br>
 
