@@ -1,4 +1,6 @@
 # PisiChBank
+By Carlos Rodríguez (Pisich)
+
 Banking platform built in C.</br></br>
 Operations include:</br>
 -Create a new account</br>
