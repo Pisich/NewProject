@@ -10,7 +10,7 @@ Operations include:</br>
 -Delete your account</br>
 
 ## Compiling
-You can use any C compiler for this proyect, even though I recommend you to use GCC.
+You can use any C compiler for this proyect, but I recommend you to use GCC.
 ```bash
 # Clone the PisiCh Bank repo
 git clone https://github.com/Pisich/PisiChBank
