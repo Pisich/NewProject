@@ -31,7 +31,7 @@ git clone https://github.com/Pisich/PisiChBank
 # Cd into the newly created folder
 cd PisichBank
 
-# Build the container
+# Build the container (Attention to the '.')
 docker build -t pisichbank:1.0 .
 
 #Run the container
