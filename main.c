@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #define MAX_LEN 30
+#define JUMP printf("\n")
 
 struct Account{
   char acc_holder_name[MAX_LEN];
