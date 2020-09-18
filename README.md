@@ -3,11 +3,11 @@ By Carlos Rodríguez (Pisich)
 
 Banking platform built in C.</br></br>
 Operations include:</br></br>
--Create a new account</br>
--Check the balance of your account</br>
--Deposit to your account</br>
--Withdraw from your account</br>
--Delete your account</br>
+- Create a new account</br>
+- Check the balance of your account</br>
+- Deposit to your account</br>
+- Withdraw from your account</br>
+- Delete your account</br>
 
 ## Compiling
 You can use any C compiler for this proyect, but I recommend you to use GCC.
